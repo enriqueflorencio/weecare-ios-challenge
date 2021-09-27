@@ -26,7 +26,7 @@ class TopAlbumTableViewCell: UITableViewCell {
     }
     
     private func commonInit() {
-        albumImageView.backgroundColor = .lightGray.withAlphaComponent(0.5)
+        albumImageView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         albumImageView.contentMode = .scaleToFill
         stackView.axis = .vertical
         stackView.addArrangedSubview(albumLabel)
