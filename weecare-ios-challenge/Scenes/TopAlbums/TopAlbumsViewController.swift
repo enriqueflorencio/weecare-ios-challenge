@@ -12,10 +12,13 @@ final class TopAlbumsViewController: UIViewController {
     private let cache = NSCache<NSString, UIImage>()
     private let iTunesAPI: ITunesAPI
     private let networking: Networking
-    private let tableView = UITableView()
+    private let collectionView = UICollectionView(
+        frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()
+    )
+    private let reuseIdentifier = "TopAlbumCollectionViewCell"
     private var albums = [Album]() {
         didSet {
-            tableView.reloadData()
+            collectionView.reloadData()
         }
     }
     
@@ -31,21 +34,31 @@ final class TopAlbumsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
+        configureSelf()
+        configureCollectionView()
+        loadData()
+    }
+    
+    private func configureSelf() {
         navigationItem.title = "Top Albums"
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(TopAlbumTableViewCell.self, forCellReuseIdentifier: TopAlbumTableViewCell.description())
-        view.addSubview(tableView)
+        view.backgroundColor = .white
+    }
+    
+    private func configureCollectionView() {
+        collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        collectionView.delegate = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(TopAlbumCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-        
-        loadData()
     }
     
     private func loadData() {
@@ -70,14 +83,14 @@ final class TopAlbumsViewController: UIViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension TopAlbumsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension TopAlbumsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         albums.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let album = albums[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: TopAlbumTableViewCell.description(), for: indexPath) as! TopAlbumTableViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TopAlbumCollectionViewCell
         cell.albumLabel.text = album.name
         cell.artistNameLabel.text = album.artistName
         
@@ -102,4 +115,24 @@ extension TopAlbumsViewController: UITableViewDataSource {
         
         return cell
     }
+    
+}
+
+extension TopAlbumsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width * 0.45, height: view.frame.height * 0.3)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+
 }
