@@ -8,11 +8,16 @@
 import Foundation
 import UIKit
 
+public protocol SortViewDelegate: class {
+    func didTapCategory(category: Int)
+}
+
 public class SortView: UIView {
     private let container = UIView()
     private let tableView = UITableView()
     private let sortLabel = UILabel()
-    private let categories = ["A-Z", "New", "Popular"]
+    private let categories = ["Album Title", "Artist Name", "New"]
+    public weak var delegate: SortViewDelegate?
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -95,6 +100,7 @@ extension SortView: UITableViewDelegate {
         cell.circularView.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
         tableView.deselectRow(at: indexPath, animated: true)
         animateOut()
+        delegate?.didTapCategory(category: indexPath.row)
     }
 }
 

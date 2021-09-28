@@ -48,6 +48,7 @@ final class TopAlbumsViewController: UIViewController {
     
     @objc private func filter() {
         let sortView = SortView()
+        sortView.delegate = self
         view.addSubview(sortView)
     }
     
@@ -84,6 +85,21 @@ final class TopAlbumsViewController: UIViewController {
         let request = APIRequest(url: url)
         networking.requestData(request) { res in
             completion(res.map { data in UIImage(data: data) })
+        }
+    }
+}
+
+extension TopAlbumsViewController: SortViewDelegate {
+    public func didTapCategory(category: Int) {
+        switch category {
+        case 0: //Album title
+            albums.sort(by: {$0.name.lowercased() < $1.name.lowercased()})
+            collectionView.reloadData()
+        case 1: //Artist name
+            albums.sort(by: {$0.artistName.lowercased() < $1.artistName.lowercased()})
+            collectionView.reloadData()
+        default:
+            break
         }
     }
 }
