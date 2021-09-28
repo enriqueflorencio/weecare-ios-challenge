@@ -18,6 +18,7 @@ public class SortView: UIView {
     private let sortLabel = UILabel()
     private let categories = ["Album Title", "Artist Name", "New"]
     public weak var delegate: SortViewDelegate?
+    private var currentSortingIndex: Int?
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -92,6 +93,10 @@ public class SortView: UIView {
             tableView.bottomAnchor.constraint(equalTo: container.bottomAnchor)
         ])
     }
+    
+    public func setSortingIndex(sortingIndex: Int) {
+        currentSortingIndex = sortingIndex
+    }
 }
 
 extension SortView: UITableViewDelegate {
@@ -112,10 +117,11 @@ extension SortView: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ResultTableViewCell
         cell.categoryString = categories[indexPath.row]
+        if(indexPath.row == currentSortingIndex) {
+            cell.circularView.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
+        }
         return cell
     }
-    
-    
 }
 
 extension SortView: UIGestureRecognizerDelegate {

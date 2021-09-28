@@ -21,6 +21,7 @@ final class TopAlbumsViewController: UIViewController {
             collectionView.reloadData()
         }
     }
+    private var currentSortingIndex: Int?
     
     init(iTunesAPI: ITunesAPI, networking: Networking) {
         self.iTunesAPI = iTunesAPI
@@ -48,6 +49,9 @@ final class TopAlbumsViewController: UIViewController {
     
     @objc private func filter() {
         let sortView = SortView()
+        if let sortingIndex = currentSortingIndex {
+            sortView.setSortingIndex(sortingIndex: sortingIndex)
+        }
         sortView.delegate = self
         view.addSubview(sortView)
     }
@@ -91,6 +95,7 @@ final class TopAlbumsViewController: UIViewController {
 
 extension TopAlbumsViewController: SortViewDelegate {
     public func didTapCategory(category: Int) {
+        currentSortingIndex = category
         switch category {
         case 0: //Album title
             albums.sort(by: {$0.name.lowercased() < $1.name.lowercased()})
