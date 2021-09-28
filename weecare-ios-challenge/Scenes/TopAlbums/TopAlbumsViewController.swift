@@ -43,6 +43,12 @@ final class TopAlbumsViewController: UIViewController {
     private func configureSelf() {
         navigationItem.title = "Top Albums"
         view.backgroundColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(filter))
+    }
+    
+    @objc private func filter() {
+        let sortView = SortView()
+        view.addSubview(sortView)
     }
     
     private func configureCollectionView() {
