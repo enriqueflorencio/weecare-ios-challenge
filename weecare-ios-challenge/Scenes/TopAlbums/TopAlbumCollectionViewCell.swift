@@ -77,7 +77,8 @@ class TopAlbumCollectionViewCell: UICollectionViewCell {
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
             
             //ImageView
-            albumImageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            albumImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            albumImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             albumImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
             albumImageView.heightAnchor.constraint(equalToConstant: 120),
             albumImageView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
