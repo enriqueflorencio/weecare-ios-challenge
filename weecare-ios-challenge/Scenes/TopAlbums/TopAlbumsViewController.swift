@@ -43,22 +43,25 @@ final class TopAlbumsViewController: UIViewController {
     
     private func configureSelf() {
         navigationItem.title = "Top Albums"
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(filter))
     }
     
     @objc private func filter() {
-        let sortView = SortView()
-        if let sortingIndex = currentSortingIndex {
-            sortView.setSortingIndex(sortingIndex: sortingIndex)
+        if view.viewWithTag(-1) == nil {
+            let sortView = SortView()
+            if let sortingIndex = currentSortingIndex {
+                sortView.setSortingIndex(sortingIndex: sortingIndex)
+            }
+            sortView.delegate = self
+            sortView.tag = -1
+            view.addSubview(sortView)
         }
-        sortView.delegate = self
-        view.addSubview(sortView)
     }
     
     private func configureCollectionView() {
         collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(TopAlbumCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -66,8 +69,8 @@ final class TopAlbumsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
@@ -148,7 +151,7 @@ extension TopAlbumsViewController: UICollectionViewDataSource {
 extension TopAlbumsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if(UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight) {
-            return CGSize(width: (collectionView.frame.size.width-80) / 3, height: (collectionView.frame.size.width-140) / 3)
+            return CGSize(width: (collectionView.frame.size.width-80) / 3, height: (collectionView.frame.size.width-160) / 3)
         } else {
             return CGSize(width: (collectionView.frame.size.width-30) / 2, height: (collectionView.frame.size.width-30) / 2)
         }
