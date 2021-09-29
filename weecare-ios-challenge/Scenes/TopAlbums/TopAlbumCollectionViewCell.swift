@@ -34,7 +34,7 @@ class TopAlbumCollectionViewCell: UICollectionViewCell {
     
     private func commonInit() {
         //MARK: TODO- Revert the background color back to the original once I'm done working on the feature. Also remember to revert the build target back to iOS 14.5 as well.
-        albumImageView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        //albumImageView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         albumImageView.contentMode = .scaleAspectFit
         albumImageView.clipsToBounds = true
         albumImageView.layer.cornerRadius = 7
