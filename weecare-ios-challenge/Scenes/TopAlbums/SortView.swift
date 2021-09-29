@@ -13,6 +13,7 @@ public protocol SortViewDelegate: class {
 }
 
 public class SortView: UIView {
+    private let exitButton = UIButton()
     private let container = UIView()
     private let tableView = UITableView()
     private let sortLabel = UILabel()
@@ -25,10 +26,16 @@ public class SortView: UIView {
         configureSelf()
         configureGestureRecognizer()
         configureContainer()
+        configureExitButton()
         configureTableView()
         animateIn()
     }
     
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        exitButton.layer.cornerRadius = 5
+    }
     public override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
         if newWindow == nil {
@@ -55,6 +62,7 @@ public class SortView: UIView {
         container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = .white
         container.layer.cornerRadius = 7
+        container.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         addSubview(container)
         NSLayoutConstraint.activate([
             container.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -77,6 +85,22 @@ public class SortView: UIView {
         
     }
     
+    private func configureExitButton() {
+        exitButton.translatesAutoresizingMaskIntoConstraints = false
+        exitButton.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
+        exitButton.setTitleColor(.white, for: .normal)
+        exitButton.addTarget(self, action: #selector(animateOut), for: .touchUpInside)
+        exitButton.setTitle("Close", for: .normal)
+        container.addSubview(exitButton)
+        NSLayoutConstraint.activate([
+            exitButton.bottomAnchor.constraint(equalTo: container.safeAreaLayoutGuide.bottomAnchor, constant: -4),
+            exitButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            exitButton.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.8),
+            exitButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        
+    }
+    
     private func configureTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
@@ -90,7 +114,7 @@ public class SortView: UIView {
             tableView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 8),
             tableView.topAnchor.constraint(equalTo: sortLabel.bottomAnchor, constant: 8),
             tableView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8),
-            tableView.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: exitButton.topAnchor)
         ])
     }
     
@@ -135,7 +159,7 @@ extension SortView: UIGestureRecognizerDelegate {
 
 extension SortView {
     @objc private func animateOut() {
-        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn) {
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn) {
             self.container.transform = CGAffineTransform(translationX: 0, y: self.frame.height)
             self.alpha = 0
         } completion: { (complete) in

@@ -21,6 +21,7 @@ final class TopAlbumsViewController: UIViewController {
             collectionView.reloadData()
         }
     }
+    private let weeCareGradientLayer = CAGradientLayer()
     private var currentSortingIndex: Int?
     
     init(iTunesAPI: ITunesAPI, networking: Networking) {
@@ -41,11 +42,15 @@ final class TopAlbumsViewController: UIViewController {
         loadData()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        weeCareGradientLayer.frame = view.layer.bounds
+    }
+    
     private func configureSelf() {
         navigationItem.title = "Top Albums"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(filter))
         
-        let weeCareGradientLayer = CAGradientLayer()
         weeCareGradientLayer.frame = view.bounds
         weeCareGradientLayer.colors = [UIColor(red: 138/255, green: 148/255, blue: 243/255, alpha: 1).cgColor, UIColor(red: 191/255, green: 227/255, blue: 229/255, alpha: 1).cgColor]
         weeCareGradientLayer.shouldRasterize = true
