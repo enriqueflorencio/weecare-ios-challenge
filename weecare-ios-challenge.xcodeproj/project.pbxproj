@@ -22,7 +22,18 @@
 		CEE8745626E818C500A269DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE8745426E818C500A269DA /* LaunchScreen.storyboard */; };
 		CF2524CA2702F0F600DF3FCE /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2524C92702F0F600DF3FCE /* SortView.swift */; };
 		CF2524CD2703C68500DF3FCE /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2524CC2703C68500DF3FCE /* ResultTableViewCell.swift */; };
+		CF2524D927045EC600DF3FCE /* weecare_ios_challengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2524D827045EC600DF3FCE /* weecare_ios_challengeTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF2524DB27045EC600DF3FCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEE8743E26E818C000A269DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEE8744526E818C000A269DA;
+			remoteInfo = "weecare-ios-challenge";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CED2A3D926EFA7DD0093C1F3 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
@@ -42,10 +53,20 @@
 		CEE8745726E818C500A269DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF2524C92702F0F600DF3FCE /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		CF2524CC2703C68500DF3FCE /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		CF2524D627045EC600DF3FCE /* weecare-ios-challengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "weecare-ios-challengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF2524D827045EC600DF3FCE /* weecare_ios_challengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weecare_ios_challengeTests.swift; sourceTree = "<group>"; };
+		CF2524DA27045EC600DF3FCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CEE8744326E818C000A269DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF2524D327045EC600DF3FCE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -106,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE8744826E818C000A269DA /* weecare-ios-challenge */,
+				CF2524D727045EC600DF3FCE /* weecare-ios-challengeTests */,
 				CEE8744726E818C000A269DA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE8744626E818C000A269DA /* weecare-ios-challenge.app */,
+				CF2524D627045EC600DF3FCE /* weecare-ios-challengeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,9 +144,7 @@
 		CEE8744826E818C000A269DA /* weecare-ios-challenge */ = {
 			isa = PBXGroup;
 			children = (
-				CED2A3E226EFA9450093C1F3 /* API */,
-				CED2A3DC26EFA87F0093C1F3 /* Network */,
-				CED2A3DB26EFA84A0093C1F3 /* Domain */,
+				CF2524D027045C7A00DF3FCE /* Model */,
 				CED2A3ED26F000BF0093C1F3 /* Scenes */,
 				CEE8744926E818C000A269DA /* AppDelegate.swift */,
 				CEE8744B26E818C000A269DA /* SceneDelegate.swift */,
@@ -132,6 +153,25 @@
 				CEE8745726E818C500A269DA /* Info.plist */,
 			);
 			path = "weecare-ios-challenge";
+			sourceTree = "<group>";
+		};
+		CF2524D027045C7A00DF3FCE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CED2A3DB26EFA84A0093C1F3 /* Domain */,
+				CED2A3DC26EFA87F0093C1F3 /* Network */,
+				CED2A3E226EFA9450093C1F3 /* API */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF2524D727045EC600DF3FCE /* weecare-ios-challengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF2524D827045EC600DF3FCE /* weecare_ios_challengeTests.swift */,
+				CF2524DA27045EC600DF3FCE /* Info.plist */,
+			);
+			path = "weecare-ios-challengeTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,17 +194,39 @@
 			productReference = CEE8744626E818C000A269DA /* weecare-ios-challenge.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CF2524D527045EC600DF3FCE /* weecare-ios-challengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF2524DD27045EC600DF3FCE /* Build configuration list for PBXNativeTarget "weecare-ios-challengeTests" */;
+			buildPhases = (
+				CF2524D227045EC600DF3FCE /* Sources */,
+				CF2524D327045EC600DF3FCE /* Frameworks */,
+				CF2524D427045EC600DF3FCE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF2524DC27045EC600DF3FCE /* PBXTargetDependency */,
+			);
+			name = "weecare-ios-challengeTests";
+			productName = "weecare-ios-challengeTests";
+			productReference = CF2524D627045EC600DF3FCE /* weecare-ios-challengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		CEE8743E26E818C000A269DA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					CEE8744526E818C000A269DA = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					CF2524D527045EC600DF3FCE = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = CEE8744526E818C000A269DA;
 					};
 				};
 			};
@@ -182,6 +244,7 @@
 			projectRoot = "";
 			targets = (
 				CEE8744526E818C000A269DA /* weecare-ios-challenge */,
+				CF2524D527045EC600DF3FCE /* weecare-ios-challengeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -193,6 +256,13 @@
 			files = (
 				CEE8745626E818C500A269DA /* LaunchScreen.storyboard in Resources */,
 				CEE8745326E818C500A269DA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF2524D427045EC600DF3FCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +289,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CF2524D227045EC600DF3FCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF2524D927045EC600DF3FCE /* weecare_ios_challengeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF2524DC27045EC600DF3FCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEE8744526E818C000A269DA /* weecare-ios-challenge */;
+			targetProxy = CF2524DB27045EC600DF3FCE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CEE8745426E818C500A269DA /* LaunchScreen.storyboard */ = {
@@ -389,6 +475,48 @@
 			};
 			name = Release;
 		};
+		CF2524DE27045EC600DF3FCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2E24SPH2ZV;
+				INFOPLIST_FILE = "weecare-ios-challengeTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.enriqueflorencio.weecare-ios-challengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/weecare-ios-challenge.app/weecare-ios-challenge";
+			};
+			name = Debug;
+		};
+		CF2524DF27045EC600DF3FCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2E24SPH2ZV;
+				INFOPLIST_FILE = "weecare-ios-challengeTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.enriqueflorencio.weecare-ios-challengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/weecare-ios-challenge.app/weecare-ios-challenge";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -406,6 +534,15 @@
 			buildConfigurations = (
 				CEE8745B26E818C500A269DA /* Debug */,
 				CEE8745C26E818C500A269DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF2524DD27045EC600DF3FCE /* Build configuration list for PBXNativeTarget "weecare-ios-challengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF2524DE27045EC600DF3FCE /* Debug */,
+				CF2524DF27045EC600DF3FCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
