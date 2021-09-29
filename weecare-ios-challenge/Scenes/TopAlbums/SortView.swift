@@ -20,12 +20,14 @@ public class SortView: UIView {
     private let categories = ["Album Title", "Artist Name", "New"]
     public weak var delegate: SortViewDelegate?
     private var currentSortingIndex: Int?
+    private var containerConstraints = [NSLayoutConstraint]()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
         configureSelf()
         configureGestureRecognizer()
         configureContainer()
+        configureSortByLabel()
         configureExitButton()
         configureTableView()
         animateIn()
@@ -35,7 +37,23 @@ public class SortView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         exitButton.layer.cornerRadius = 5
+        let currentOrientation = UIDevice.current.orientation
+        if(currentOrientation == .landscapeLeft || currentOrientation == .landscapeRight) {
+            frame = UIScreen.main.bounds
+            removeContainerConstraints()
+            layoutLandscape()
+        } else if(currentOrientation == .portrait) {
+            frame = UIScreen.main.bounds
+            removeContainerConstraints()
+            layoutPortrait()
+        }
     }
+    
+    private func removeContainerConstraints() {
+        NSLayoutConstraint.deactivate(containerConstraints)
+        containerConstraints.removeAll()
+    }
+    
     public override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
         if newWindow == nil {
@@ -58,19 +76,36 @@ public class SortView: UIView {
         self.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    private func layoutLandscape() {
+        containerConstraints.append(contentsOf:
+            [container.bottomAnchor.constraint(equalTo: bottomAnchor),
+             container.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+             container.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.60)]
+        )
+        NSLayoutConstraint.activate(containerConstraints)
+    }
+    
+    private func layoutPortrait() {
+        containerConstraints.append(contentsOf:
+            [container.bottomAnchor.constraint(equalTo: bottomAnchor),
+             container.centerXAnchor.constraint(equalTo: centerXAnchor),
+             container.widthAnchor.constraint(equalTo: widthAnchor),
+             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)]
+        )
+        NSLayoutConstraint.activate(containerConstraints)
+    }
+    
     private func configureContainer() {
         container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = .white
         container.layer.cornerRadius = 7
         container.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         addSubview(container)
-        NSLayoutConstraint.activate([
-            container.bottomAnchor.constraint(equalTo: bottomAnchor),
-            container.centerXAnchor.constraint(equalTo: centerXAnchor),
-            container.widthAnchor.constraint(equalTo: widthAnchor),
-            container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)
-        
-        ])
+        layoutPortrait()
+    }
+    
+    private func configureSortByLabel() {
         sortLabel.translatesAutoresizingMaskIntoConstraints = false
         sortLabel.text = "Sort Results By"
         sortLabel.textAlignment = .center
@@ -82,7 +117,6 @@ public class SortView: UIView {
             sortLabel.widthAnchor.constraint(equalTo: container.widthAnchor),
             sortLabel.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.1)
         ])
-        
     }
     
     private func configureExitButton() {
