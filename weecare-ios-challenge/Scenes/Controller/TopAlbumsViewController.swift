@@ -36,7 +36,6 @@ final class TopAlbumsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureSelf()
         configureCollectionView()
         loadData()
@@ -55,18 +54,6 @@ final class TopAlbumsViewController: UIViewController {
         weeCareGradientLayer.colors = [UIColor(red: 138/255, green: 148/255, blue: 243/255, alpha: 1).cgColor, UIColor(red: 191/255, green: 227/255, blue: 229/255, alpha: 1).cgColor]
         weeCareGradientLayer.shouldRasterize = true
         view.layer.addSublayer(weeCareGradientLayer)
-    }
-    
-    @objc private func filter() {
-        if view.viewWithTag(-1) == nil {
-            let sortView = SortView()
-            if let sortingIndex = currentSortingIndex {
-                sortView.setSortingIndex(sortingIndex: sortingIndex)
-            }
-            sortView.delegate = self
-            sortView.tag = -1
-            view.addSubview(sortView)
-        }
     }
     
     private func configureCollectionView() {
@@ -104,8 +91,21 @@ final class TopAlbumsViewController: UIViewController {
             completion(res.map { data in UIImage(data: data) })
         }
     }
+    
+    @objc private func filter() {
+        if view.viewWithTag(-1) == nil {
+            let sortView = SortView()
+            if let sortingIndex = currentSortingIndex {
+                sortView.setSortingIndex(sortingIndex: sortingIndex)
+            }
+            sortView.delegate = self
+            sortView.tag = -1
+            view.addSubview(sortView)
+        }
+    }
 }
 
+//MARK: Sort View Delegate Functions
 extension TopAlbumsViewController: SortViewDelegate {
     public func didTapCategory(category: Int) {
         currentSortingIndex = category
@@ -125,15 +125,16 @@ extension TopAlbumsViewController: SortViewDelegate {
     }
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - UICollectionViewDataSource
 extension TopAlbumsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         albums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let fallbackCell = UICollectionViewCell()
         let album = albums[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TopAlbumCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? TopAlbumCollectionViewCell else {return fallbackCell}
         cell.albumLabel.text = album.name
         cell.artistNameLabel.text = album.artistName
         
@@ -161,6 +162,7 @@ extension TopAlbumsViewController: UICollectionViewDataSource {
     
 }
 
+// MARK: -UICollectionViewDelegateFlowLayout
 extension TopAlbumsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if(UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight) {

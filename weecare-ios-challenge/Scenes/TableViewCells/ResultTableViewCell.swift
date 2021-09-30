@@ -17,7 +17,7 @@ public class ResultTableViewCell: UITableViewCell {
         }
     }
     public let circularView = UIView()
-    private let categoryLabel = UILabel()
+    private let categoryLabel = WeeCareLabel()
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,19 +33,16 @@ public class ResultTableViewCell: UITableViewCell {
         circularView.layer.cornerRadius = (circularView.frame.width) / 2
         circularView.layer.borderColor = UIColor.lightGray.cgColor
         circularView.layer.borderWidth = 1
-        categoryLabel.sizeToFit()
     }
     
     private func configureLabel() {
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        categoryLabel.textAlignment = .left
-        categoryLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        categoryLabel.setFont(font: UIFont.systemFont(ofSize: 12, weight: .medium))
         addSubview(categoryLabel)
         NSLayoutConstraint.activate([
             categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             categoryLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             categoryLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
-            
         ])
     }
     
@@ -53,7 +50,6 @@ public class ResultTableViewCell: UITableViewCell {
         circularView.translatesAutoresizingMaskIntoConstraints = false
         circularView.clipsToBounds = true
         circularView.layer.masksToBounds = false
-        
         addSubview(circularView)
         NSLayoutConstraint.activate([
             circularView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),

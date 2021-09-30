@@ -22,7 +22,8 @@
 		CEE8745626E818C500A269DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE8745426E818C500A269DA /* LaunchScreen.storyboard */; };
 		CF2524CA2702F0F600DF3FCE /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2524C92702F0F600DF3FCE /* SortView.swift */; };
 		CF2524CD2703C68500DF3FCE /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2524CC2703C68500DF3FCE /* ResultTableViewCell.swift */; };
-		CF2524D927045EC600DF3FCE /* weecare_ios_challengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2524D827045EC600DF3FCE /* weecare_ios_challengeTests.swift */; };
+		CF2524D927045EC600DF3FCE /* WeeCareNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2524D827045EC600DF3FCE /* WeeCareNetworkTests.swift */; };
+		CF2525242705805D00DF3FCE /* WeeCareLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2525232705805D00DF3FCE /* WeeCareLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +55,9 @@
 		CF2524C92702F0F600DF3FCE /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		CF2524CC2703C68500DF3FCE /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		CF2524D627045EC600DF3FCE /* weecare-ios-challengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "weecare-ios-challengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF2524D827045EC600DF3FCE /* weecare_ios_challengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weecare_ios_challengeTests.swift; sourceTree = "<group>"; };
+		CF2524D827045EC600DF3FCE /* WeeCareNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeCareNetworkTests.swift; sourceTree = "<group>"; };
 		CF2524DA27045EC600DF3FCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF2525232705805D00DF3FCE /* WeeCareLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeCareLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,20 +109,20 @@
 		CED2A3ED26F000BF0093C1F3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				CED2A3EE26F000E20093C1F3 /* TopAlbums */,
+				CF25252C2705851500DF3FCE /* TableViewCells */,
+				CF25252B270584C300DF3FCE /* CollectionViewCells */,
+				CF2525222705804900DF3FCE /* Views */,
+				CED2A3EE26F000E20093C1F3 /* Controller */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		CED2A3EE26F000E20093C1F3 /* TopAlbums */ = {
+		CED2A3EE26F000E20093C1F3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CED2A3F126F00DD20093C1F3 /* TopAlbumCollectionViewCell.swift */,
 				CED2A3EF26F000F60093C1F3 /* TopAlbumsViewController.swift */,
-				CF2524C92702F0F600DF3FCE /* SortView.swift */,
-				CF2524CC2703C68500DF3FCE /* ResultTableViewCell.swift */,
 			);
-			path = TopAlbums;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		CEE8743D26E818C000A269DA = {
@@ -168,10 +170,35 @@
 		CF2524D727045EC600DF3FCE /* weecare-ios-challengeTests */ = {
 			isa = PBXGroup;
 			children = (
-				CF2524D827045EC600DF3FCE /* weecare_ios_challengeTests.swift */,
+				CF2524D827045EC600DF3FCE /* WeeCareNetworkTests.swift */,
 				CF2524DA27045EC600DF3FCE /* Info.plist */,
 			);
 			path = "weecare-ios-challengeTests";
+			sourceTree = "<group>";
+		};
+		CF2525222705804900DF3FCE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CF2525232705805D00DF3FCE /* WeeCareLabel.swift */,
+				CF2524C92702F0F600DF3FCE /* SortView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF25252B270584C300DF3FCE /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				CED2A3F126F00DD20093C1F3 /* TopAlbumCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		CF25252C2705851500DF3FCE /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				CF2524CC2703C68500DF3FCE /* ResultTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +309,7 @@
 				CED2A3F526F017330093C1F3 /* Network.swift in Sources */,
 				CED2A3E626EFAA5C0093C1F3 /* Album.swift in Sources */,
 				CED2A3EB26EFB7210093C1F3 /* APIErrors.swift in Sources */,
+				CF2525242705805D00DF3FCE /* WeeCareLabel.swift in Sources */,
 				CF2524CD2703C68500DF3FCE /* ResultTableViewCell.swift in Sources */,
 				CEE8744A26E818C000A269DA /* AppDelegate.swift in Sources */,
 				CED2A3E826EFABD10093C1F3 /* APIRequest.swift in Sources */,
@@ -293,7 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF2524D927045EC600DF3FCE /* weecare_ios_challengeTests.swift in Sources */,
+				CF2524D927045EC600DF3FCE /* WeeCareNetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

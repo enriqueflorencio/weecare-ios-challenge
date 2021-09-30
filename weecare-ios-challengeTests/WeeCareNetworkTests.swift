@@ -8,7 +8,7 @@
 import XCTest
 @testable import weecare_ios_challenge
 
-class weecare_ios_challengeTests: XCTestCase {
+class WeeCareNetworkTests: XCTestCase {
     private let network = Network(
         sessionConfig: URLSessionConfiguration.default
     )
@@ -24,7 +24,7 @@ class weecare_ios_challengeTests: XCTestCase {
         continueAfterFailure = false
     }
     
-    func testGetRequest() {
+    func testAPIRequests() {
         let getAlbumExpectation = XCTestExpectation(description: "async album get request")
         getTopAlbumsFromApi(expectation: getAlbumExpectation)
         wait(for: [getAlbumExpectation], timeout: expectationTimeout)
