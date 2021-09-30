@@ -116,6 +116,9 @@ extension TopAlbumsViewController: SortViewDelegate {
         case 1: //Artist name
             albums.sort(by: {$0.artistName.lowercased() < $1.artistName.lowercased()})
             collectionView.reloadData()
+        case 2: //Release Date
+            albums.sort(by: {$0.releaseDate.compare($1.releaseDate) == .orderedDescending})
+            collectionView.reloadData()
         default:
             break
         }

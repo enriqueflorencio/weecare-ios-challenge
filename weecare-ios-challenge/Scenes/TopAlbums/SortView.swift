@@ -17,7 +17,7 @@ public class SortView: UIView {
     private let container = UIView()
     private let tableView = UITableView()
     private let sortLabel = UILabel()
-    private let categories = ["Album Title", "Artist Name", "New"]
+    private let categories = ["Album Title", "Artist Name", "Release Date"]
     public weak var delegate: SortViewDelegate?
     private var currentSortingIndex: Int?
     private var containerConstraints = [NSLayoutConstraint]()
@@ -81,7 +81,7 @@ public class SortView: UIView {
             [container.bottomAnchor.constraint(equalTo: bottomAnchor),
              container.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
              container.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
-             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.60)]
+             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.61)]
         )
         NSLayoutConstraint.activate(containerConstraints)
     }
@@ -107,7 +107,7 @@ public class SortView: UIView {
     
     private func configureSortByLabel() {
         sortLabel.translatesAutoresizingMaskIntoConstraints = false
-        sortLabel.text = "Sort Results By"
+        sortLabel.text = "Sort Albums By"
         sortLabel.textAlignment = .center
         sortLabel.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         container.addSubview(sortLabel)

@@ -33,24 +33,20 @@ class TopAlbumCollectionViewCell: UICollectionViewCell {
     }
     
     private func commonInit() {
-        //MARK: TODO- Revert the background color back to the original once I'm done working on the feature. Also remember to revert the build target back to iOS 14.5 as well.
-        //albumImageView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        albumImageView.contentMode = .scaleAspectFit
         albumImageView.clipsToBounds = true
         albumImageView.layer.cornerRadius = 7
         albumImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         albumImageView.layer.masksToBounds = true
-        albumLabel.textColor = .darkGray
+        albumLabel.textColor = .black
         albumLabel.textAlignment = .left
-        albumLabel.numberOfLines = 0
-        
-        albumLabel.lineBreakMode = .byWordWrapping
-        albumLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        artistNameLabel.textColor = .lightGray
+        albumLabel.numberOfLines = 2
+        albumLabel.lineBreakMode = .byTruncatingTail
+        albumLabel.font = UIFont.systemFont(ofSize: 12)
+        artistNameLabel.textColor = .darkGray
         artistNameLabel.textAlignment = .left
-        artistNameLabel.numberOfLines = 0
+        artistNameLabel.numberOfLines = 1
         
-        artistNameLabel.lineBreakMode = .byWordWrapping
+        artistNameLabel.lineBreakMode = .byTruncatingTail
         artistNameLabel.font = UIFont.systemFont(ofSize: 12)
         stackView.axis = .vertical
         stackView.addArrangedSubview(albumLabel)
@@ -66,9 +62,6 @@ class TopAlbumCollectionViewCell: UICollectionViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
             containerView.addSubview($0)
         }
-        
-        let albumHeight = albumImageView.heightAnchor.constraint(equalToConstant: 100)
-        albumHeight.priority = .defaultLow
         NSLayoutConstraint.activate([
             // Container View
             containerView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -80,8 +73,8 @@ class TopAlbumCollectionViewCell: UICollectionViewCell {
             albumImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             albumImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             albumImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            albumImageView.heightAnchor.constraint(equalToConstant: 120),
-            albumImageView.widthAnchor.constraint(equalTo: containerView.heightAnchor),
+            albumImageView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.7),
+            albumImageView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
             
             //Stack
             stackView.topAnchor.constraint(equalTo: albumImageView.bottomAnchor, constant: 4),
