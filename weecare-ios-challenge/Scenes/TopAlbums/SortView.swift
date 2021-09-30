@@ -81,7 +81,7 @@ public class SortView: UIView {
             [container.bottomAnchor.constraint(equalTo: bottomAnchor),
              container.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
              container.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
-             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.61)]
+             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.65)]
         )
         NSLayoutConstraint.activate(containerConstraints)
     }
@@ -91,7 +91,7 @@ public class SortView: UIView {
             [container.bottomAnchor.constraint(equalTo: bottomAnchor),
              container.centerXAnchor.constraint(equalTo: centerXAnchor),
              container.widthAnchor.constraint(equalTo: widthAnchor),
-             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)]
+             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.37)]
         )
         NSLayoutConstraint.activate(containerConstraints)
     }
